@@ -40,3 +40,35 @@ canvas {
     pointer-events: auto;
 }
 
+#gameContainer {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+#inputBox {
+    position: fixed;
+    right: 20px;
+    top: 150px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 3px solid #00ff00;
+    border-radius: 8px;
+    padding: 15px;
+    min-width: 200px;
+    z-index: 100;
+}
+
+#playerInput {
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    background: #1a1a1a;
+    color: #00ff00;
+    border: 2px solid #00ff00;
+    border-radius: 4px;
+    font-family: monospace;
+}
+
+#playerInput::placeholder {
+    color: #00aa00;
+}

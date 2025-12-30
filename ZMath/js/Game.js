@@ -26,35 +26,59 @@ export class Game {
     }
 
     bindInput() {
-        window.addEventListener('keydown', (e) => {
+        const input = document.querySelector('#playerInput');
+
+        input.addEventListener('keydown', (e) => {
             if (this.gameOver) {
                 if (e.key === "Enter") this.reset();
                 return;
             }
-            this.handleTyping(e.key.toUpperCase());
+            
+            if (e.key === "Enter") {
+                const value = input.value.trim();
+                if (value) {
+                    this.handleTyping(value);
+                    input.value = '';
+                }
+                return;
+            }
+
+            if (['Backspace', 'Delete', 'Tab', 'Escape', 'ArrowLeft', 'ArrowRight'].includes(e.key)) {
+                return;
+            }
+
+            if(!/[0-9]/.test(e.key)){
+                e.preventDefault();
+                return;
+            }
         });
     }
 
     spawnEnemy() {
-        const word = WORDS_LIST[Math.floor(Math.random() * WORDS_LIST.length)];
-        this.enemies.push(new Enemy(word));
+
+        const n1 = Math.floor(Math.random() * 10);
+        const n2 = Math.floor(Math.random() * 10);
+        const word = `${n1} + ${n2}` + ' = ?';
+        const answer = (n1 + n2).toString();
+
+        //const word = WORDS_LIST[Math.floor(Math.random() * WORDS_LIST.length)];
+        this.enemies.push(new Enemy(word, answer));
     }
 
     handleTyping(key) {
         // Lógica de Lock-on
         if (this.currentTarget) {
-            if (this.currentTarget.text[0] === key) {
+            if (this.currentTarget.answer === key) {
                 this.shoot(this.currentTarget);
-                this.currentTarget.text = this.currentTarget.text.substring(1);
+                //this.currentTarget.text = this.currentTarget.text.substring(1);
                 
-                if (this.currentTarget.text.length === 0) {
-                    this.destroyEnemy(this.currentTarget);
-                    this.currentTarget = null;
-                }
+                this.destroyEnemy(this.currentTarget);
+                this.currentTarget = null;
+                
             }
         } else {
             // Busca novo alvo
-            const targets = this.enemies.filter(e => e.text[0] === key);
+            const targets = this.enemies.filter(e => e.answer === key);
             if (targets.length > 0) {
                 targets.sort((a, b) => b.y - a.y); // Prioriza o mais baixo
                 this.currentTarget = targets[0];
