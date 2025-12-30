@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>ZType Modular</title>
+    <link rel="stylesheet" href="./styles/style.css">
+</head>
+<body>
+
+    <div id="ui">
+        <h1>ZType Clone</h1>
+        <p>Score: <span id="scoreEl">0</span></p>
+        <div id="gameOverScreen" class="hidden">
+            <h2>GAME OVER</h2>
+            <p>Pressione ENTER para reiniciar</p>
+        </div>
+    </div>
+    
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="inputBox">
+            <input type="text" id="playerInput">
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
