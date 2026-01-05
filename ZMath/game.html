@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-Math</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'JetBrains Mono', monospace; }
+        #gameCanvas { background: #050505; }
+        /* Brilho pulsante para o input focado */
+        .input-focus-glow:focus-within {
+            box-shadow: 0 0 15px rgba(34, 211, 238, 0.4);
+            border-color: rgba(34, 211, 238, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-[#0a0a0a] h-screen flex flex-col items-center justify-center overflow-hidden m-0 text-white">
+
+    <div id="ui" class="fixed top-8 left-8 pointer-events-none select-none">
+        <h1 class="text-xs uppercase tracking-[0.3em] text-cyan-500/60 mb-1">System Status: Active</h1>
+        <div class="text-4xl font-bold flex items-baseline gap-2">
+            <span class="text-gray-500 text-lg">Score:</span>
+            <span id="scoreEl" class="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">0</span>
+        </div>
+    </div>
+
+    <div id="pauseModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-md">
+        <div class="bg-[#111] border-2 border-cyan-500/50 p-10 rounded-xl text-center shadow-[0_0_50px_rgba(0,0,0,1)] w-80">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-8 tracking-tighter">PAUSADO</h2>
+            <div class="flex flex-col gap-4">
+                <button id="btnResume" class="py-3 bg-cyan-500 text-black font-bold rounded hover:bg-cyan-400 transition-colors">CONTINUAR</button>
+                <button id="btnMenu" class="py-3 bg-white/10 text-white font-bold rounded hover:bg-white/20 transition-colors border border-white/10">MENU PRINCIPAL</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="gameOverScreen" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-md">
+        <div class="text-center p-10 border-y border-red-500/30 w-full bg-red-500/5">
+            <h2 class="text-6xl font-black text-red-600 mb-4 tracking-tighter">MISSILE HIT</h2>
+            <p id="finalScore" class="text-2xl text-white mb-6">Final Score: 0</p>
+            <p class="text-gray-400 uppercase tracking-widest animate-pulse">Pressione ENTER para reiniciar</p>
+        </div>
+    </div>
+    
+    <div class="flex flex-col gap-6 items-center">
+        <div id="gameContainer" class="relative group">
+            <canvas id="gameCanvas" class="border border-white/10 rounded-sm shadow-2xl"></canvas>
+        </div>
+
+        <div id="inputBox" class="w-full max-w-md bg-[#111] border-2 border-white/10 rounded-lg p-1 input-focus-glow transition-all duration-300">
+            <div class="flex items-center px-4 py-2 gap-3">
+                <span class="text-cyan-500 font-bold ml-2">></span>
+                <input type="text" id="playerInput" autocomplete="off" 
+                    class="bg-transparent w-full outline-none text-2xl uppercase tracking-widest text-white font-bold placeholder:text-gray-700"
+                    placeholder="DIGITE AQUI...">
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
