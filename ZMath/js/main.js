@@ -11,7 +11,9 @@ canvas.height = CANVAS_HEIGHT;
 // Elementos de UI
 const uiElements = {
     scoreEl: document.getElementById('scoreEl'),
-    gameOverScreen: document.getElementById('gameOverScreen')
+    gameOverScreen: document.getElementById('gameOverScreen'),
+    pauseScreen : document.getElementById('pauseModal'),
+    playerInput: document.getElementById('playerInput')
 };
 
 // Iniciar o Jogo
