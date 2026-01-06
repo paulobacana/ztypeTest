@@ -30,6 +30,10 @@ export class Game {
 
     bindInput() {
         this.playerInput.focus();
+
+        this.playerInput.addEventListener('blur',() => {
+            this.playerInput.focus();
+        });
         
         this.playerInput.addEventListener('keydown', (e) => {
             // 1. Pausa (Sempre checar primeiro)
@@ -131,7 +135,7 @@ export class Game {
         if (target != null){
             this.lasers.push(new Laser(CANVAS_WIDTH / 2, CANVAS_HEIGHT, target.x, target.y));
         }else{
-            this.lasers.push(new Laser(CANVAS_WIDTH / 2, CANVAS_HEIGHT, Math.random() * (CANVAS_WIDTH - 100) + 50, CANVAS_HEIGHT / 2));
+            this.lasers.push(new Laser(CANVAS_WIDTH / 2, CANVAS_HEIGHT, Math.random() * (CANVAS_WIDTH - 100) + 50, Math.random() * (CANVAS_HEIGHT)));
         }
     }
 
