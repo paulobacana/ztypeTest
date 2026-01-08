@@ -18,13 +18,37 @@
 </head>
 <body class="bg-[#0a0a0a] h-screen flex flex-col items-center justify-center overflow-hidden m-0 text-white">
 
-    <div id="ui" class="fixed top-8 left-8 pointer-events-none select-none">
-        <h1 class="text-xs uppercase tracking-[0.3em] text-cyan-500/60 mb-1">System Status: Active</h1>
-        <div class="text-4xl font-bold flex items-baseline gap-2">
-            <span class="text-gray-500 text-lg">Score:</span>
-            <span id="scoreEl" class="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">0</span>
+    <div id="ui" class="fixed top-8 left-8 pointer-events-none select-none flex flex-col gap-4">
+        <div>
+            <h1 class="text-xs uppercase tracking-[0.3em] text-cyan-500/60 mb-1">System Status: Active</h1>
+            <div class="text-4xl font-bold flex items-baseline gap-2">
+                <span class="text-gray-400/50 text-sm uppercase tracking-widest">Score</span>
+                <span id="scoreEl" class="text-cyan-400 drop-shadow-[0_0_8px_rgba(34,211,238,0.8)]">0</span>
+            </div>
+        </div>
+    
+        <div class="w-64">
+            <div class="flex justify-between items-end mb-1">
+                <span class="text-xs uppercase tracking-[0.2em] text-gray-400">Hull Integrity</span>
+                <span id="lifeText" class="text-cyan-400 text-xs font-bold">100%</span>
+            </div>
+            
+            <div class="h-2 w-full bg-gray-800/50 rounded-full border border-white/5 overflow-hidden backdrop-blur-sm">
+                <div id="playerLifeBar" 
+                     class="h-full bg-gradient-to-r from-cyan-600 to-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.5)] transition-all duration-500 ease-out" 
+                     style="width: 100%">
+                </div>
+            </div>
+            
+            <div class="flex gap-1 mt-1">
+                <div class="h-1 w-8 bg-cyan-500/20"></div>
+                <div class="h-1 w-2 bg-cyan-500/20"></div>
+                <div class="h-1 w-1 bg-cyan-500/20"></div>
+            </div>
         </div>
     </div>
+
+    <div id="damageFlash" class="fixed inset-0 bg-red-600/40 opacity-0 pointer-events-none z-[100] transition-opacity duration-150"></div>
 
     <div id="pauseModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black/40 backdrop-blur-md">
         <div class="bg-[#111] border-2 border-cyan-500/50 p-10 rounded-xl text-center shadow-[0_0_50px_rgba(0,0,0,1)] w-80">
