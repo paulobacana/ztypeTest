@@ -30,10 +30,10 @@ export class Player {
     // Desenha a Imagem
     ctx.drawImage(this.sprite, x, y, this.width, this.height);
 
-    // OPCIONAL: Adicionar um brilho de motor (exaustor) animado
     this.drawEngineThruster(ctx, x + this.width / 2, y + this.height);
   }
 
+  //desenha o fogo do motor 
   drawEngineThruster(ctx, x, y) {
     ctx.beginPath();
     ctx.arc(x, y, 3 + Math.random() * 4, 0, Math.PI * 2);
